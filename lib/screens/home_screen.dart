@@ -26,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
   List<SliderModel> sliders = [];
   List<ArticleModel> articles = [];
   int activeIndex = 0;
-  bool _loading = true;
 
   @override
   void initState() {
@@ -40,9 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
     News newsclass = News();
     await newsclass.getNews();
     articles = newsclass.news;
-    setState(() {
-      _loading = false;
-    });
+    setState(() {});
   }
 
   getSlider() async {
@@ -70,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         elevation: 0.0,
       ),
-      body: _loading
+      body: sliders.length == 0
           ? Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               child: Container(
@@ -104,8 +101,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 18),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AllNewsScreen(news: "Breaking"),));
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        AllNewsScreen(news: "Breaking"),
+                                  ));
                             },
                             child: Text(
                               "View All",
@@ -120,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 10),
                     CarouselSlider.builder(
-                      itemCount: 5,
+                      itemCount: sliders.length,
                       itemBuilder: (context, index, realIndex) {
                         String? res = sliders[index].urlToImage;
                         String? res1 = sliders[index].title;
@@ -154,8 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 fontSize: 18),
                           ),
                           GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => AllNewsScreen(news: "Trending"),));
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        AllNewsScreen(news: "Trending"),
+                                  ));
                             },
                             child: Text(
                               "View All",
@@ -170,17 +177,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: ClampingScrollPhysics(),
-                          itemCount: 15, itemBuilder: (context, index) {
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: articles.length,
+                        itemBuilder: (context, index) {
                           return BlogTile(
-                              url: articles[index].url!,
-                              imageUrl: articles[index].urlToImage!,
-                              title: articles[index].title!,
-                              desc: articles[index].description!);
-                        },),
-                        ),
+                            url: articles[index].url!,
+                            imageUrl: articles[index].urlToImage!,
+                            title: articles[index].title!,
+                            desc: articles[index].description!,
+                          );
+                        },
+                      ),
+                    ),
                     SizedBox(height: 10),
                   ],
                 ),
@@ -325,12 +335,14 @@ class BlogTile extends StatelessWidget {
                 Container(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      height: 100,
-                      width: 100,
-                      fit: BoxFit.cover,
-                    ),
+                    child: imageUrl.isNotEmpty
+                        ? CachedNetworkImage(
+                            imageUrl: imageUrl,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          )
+                        : Container(),
                   ),
                 ),
                 SizedBox(width: 5),

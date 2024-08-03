@@ -9,7 +9,7 @@ class News {
 
   Future<void> getNews() async {
     String url =
-        "https://newsapi.org/v2/everything?q=tesla&from=2024-05-13&sortBy=publishedAt&apiKey=74b1336fd0164282a93eb782c5d276dd";
+        "https://newsapi.org/v2/everything?q=tesla&from=2024-07-03&sortBy=publishedAt&apiKey=987a68b5057c45169e8ec46fc4597e32";
     var response = await http.get(Uri.parse(url));
 
     var jsonData = jsonDecode(response.body);
