@@ -15,6 +15,13 @@
 
 ## 📸 Screenshots
 
+| Splash Screen | Loading Screen | Home Screen | Trending News 
+| --- | --- | --- | --- |
+| ![Splash Screen](https://github.com/user-attachments/assets/8e9c3698-4400-44e8-923b-6250b56d0e1e) | ![Loading screen](https://github.com/user-attachments/assets/148a22bc-80f9-4b02-87fd-c0c1639ea954) | ![Home Screen](https://github.com/user-attachments/assets/f67070b6-e682-4d42-b3b7-333952dd149e) | ![Trending news view all](https://github.com/user-attachments/assets/f5bba629-6f1c-469d-9537-33cfdf431151) 
+
+
+
+
 
 ## 🚧 Installation & Setup
  - To get started with this project, clone the repository and follow the instructions below:
