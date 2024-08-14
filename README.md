@@ -29,5 +29,5 @@ flutter run
  - Contributions are welcome! Feel free to submit a pull request or open an issue if you find a bug or have an idea for improvement.
 
 ## 📫 Contact
-- If you have any questions or want to connect, feel free to reach out via [LinkedIn]([url](https://www.linkedin.com/in/hozefa-sailanawala/)) or check out more of my work on GitHub.
+ - For more updates and to connect with me, follow me on [LinkedIn](https://www.linkedin.com/in/hozefa-sailanawala/).
   
